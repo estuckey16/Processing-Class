@@ -11,8 +11,7 @@ int x3 = 0;
 int y3 = 0;
 void draw() {
   
-  int x2 = width;    // Creates a starting point for the parabola lines
-  int y2 = height;   // Creates a startint point for the parabola lines
+  
   
   point(x, y);    // Draws the point that the lines will follow
   
