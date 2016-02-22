@@ -5,8 +5,8 @@ void setup() {
 }
 
 float r = 50; //radius
-float x = random(100 + width/3);    // Picks a random x coordinate for the point P
-float y = random(100 + height/3);  // Picks a random y coordinate for the point P
+float x = random(-r, r);    // Picks a random x coordinate for the point P
+float y = random(-r, r);  // Picks a random y coordinate for the point P
 float circleCenterX = 0;
 float circleCenterY = 0;
 float diameter = r*2;              // Diameter of point P
