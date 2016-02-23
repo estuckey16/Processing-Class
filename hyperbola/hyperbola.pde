@@ -27,12 +27,7 @@ void draw() {
   //ellipse(x2, y2, 5, 5);
  //ellipse(x2, y3, 10, 10);
   strokeWeight(1);
-  println( "x2" + x2);
-  println("y2" + y2);
-  
-  
- 
-  
+    
   float midX = (x2 + x) / 2;    // Gets the x coordinate of the midpoint between the two lines
   float midY = (y2 + y) / 2;    // Gets the y coordinate of the midpoint
   float slope = -((x2 - x)/(y2 - y));    // The slope of the line perpendicular to the line between point R and point P

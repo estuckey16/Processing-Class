@@ -5,7 +5,7 @@ void setup() {
 float x = random(0, width);    // Creates a random x coordinate for point P
 float y = random(0, height);    // Creates a random y coordinate for point P
 
-int numLines = 2000000000;    // the number of lines on half of the parabola
+int numLines = 200000;    // the number of lines on half of the parabola
 float delta = 5;    // the number of units to move for each x
 int x3 = 0;
 int y3 = 0;
