@@ -69,16 +69,16 @@ void draw() {
     }
   }
   
-  float midX = (xCounter - randomX1) / 2;                          // Gets the x coordinate of the midpoint between the two lines
-  float midY = (yCounter - randomY1) / 2;                          // Gets the y coordinate of the midpoint between the two lines
+  float midX = (xCounter + randomX1) / 2;                          // Gets the x coordinate of the midpoint between the two lines
+  float midY = (yCounter + randomY1) / 2;                          // Gets the y coordinate of the midpoint between the two lines
   float slope = -((xCounter - randomX1)/(yCounter - randomY1));    // The slope of the line perpendicular to the line between point R and point P
   float b1 = midY - (slope * midX);                                // Calculates the y-intercept of the line
   float b2 = (slope * width) + b1;                                 // Calculates the y value at x = width
   float b3 = (slope * -width) + b1;                                // Calculate the y value for the point at -width
   line(-width, b3, width, b2);                                     // Draws the line between the two points
   
-  float midpointX2 = (xCounterVariable - randomX2) / 2;                          // Gets the x coordinate of the midpoint between the two lines
-  float midpointY2 = (yCounterVariable - randomY2) / 2;                          // Gets the y coordinate of the midpoint between the two lines
+  float midpointX2 = (xCounterVariable + randomX2) / 2;                          // Gets the x coordinate of the midpoint between the two lines
+  float midpointY2 = (yCounterVariable + randomY2) / 2;                          // Gets the y coordinate of the midpoint between the two lines
   float slope2 = -((xCounterVariable - randomX2)/(yCounterVariable - randomY2));    // The slope of the line perpendicular to the line between point R and point P
   float yint = midpointY2 - (slope * midpointX2);                                // Calculates the y-intercept of the line
   float y2 = (slope2 * width) + yint;                                 // Calculates the y value at x = width
@@ -94,6 +94,8 @@ void draw() {
   
   xCounter++;
   yCounter = (slopeRandom1 * xCounter) + yInterceptRandom1;
+  xCounterVariable = 0;
+  yCounterVariable = (slopeRandom2 * xCounterVariable) + yInterceptRandom2;
   
   popMatrix();
   
