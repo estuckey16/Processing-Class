@@ -59,29 +59,16 @@ void draw() {
   
   // Get the distance between the two randomly generated points
   float distance = sqrt(((randomX1 + randomX2) * (randomX1 + randomX2)) + ((randomY1 + randomY2) * (randomY1 + randomY2)));
-  
-  //if( 
-  
-  //for (int count = 0; count < width/2; count++) {
-  //  if (sqrt(((xCounter + xCounterVariable) * (xCounter + xCounterVariable)) + ((yCounter + yCounterVariable) * (yCounter + yCounterVariable))) == distance &&
-  //  yCounterVariable == (slopeRandom1 * xCounter) + yInterceptRandom1 && xCounterVariable == xCounter) {
-  //    break;
-  //  }
-  //  else{
-  //    xCounterVariable++;
-  //    yCounterVariable = (slopeRandom1 * xCounterVariable) + yInterceptRandom1;
-  //  }
-  //}
-  
-  float midX = (xCounter + randomX1) / 2;                          // Gets the x coordinate of the midpoint between the two lines
-  float midY = (yCounter + randomY1) / 2;                          // Gets the y coordinate of the midpoint between the two lines
-  
-  float midpointX2 = (xCounterVariable + randomX2) / 2;                          // Gets the x coordinate of the midpoint between the two lines
-  float midpointY2 = (yCounterVariable + randomY2) / 2;                          // Gets the y coordinate of the midpoint between the two lines
-  
+    
   for (int index = -width; index <= width; index++){
-    if (sqrt((distance * distance) - ((xCounterVariable - (0 + xCounterVariable)) * (xCounterVariable - (0 + xCounterVariable)))) + (0 + yCounterVariable) == (slopeRandom2 * xCounterVariable) + yInterceptRandom2) {
-      yCounterVariable = sqrt((distance * distance) - ((xCounterVariable - (0 + xCounterVariable)) * (xCounterVariable - (0 + xCounterVariable)))) + (0 + yCounterVariable);
+    if (sqrt((distance * distance) - ((xCounterVariable - (xCounter)) * (xCounterVariable - (xCounter)))) + yCounter
+    == (slopeRandom2 * xCounterVariable) + yInterceptRandom2) {
+      yCounterVariable = sqrt((distance * distance) - ((xCounterVariable - (xCounter)) * (xCounterVariable - (xCounter)))) + yCounter;
+      break;
+    }
+    else if (-sqrt((distance * distance) - ((xCounterVariable - (xCounter)) * (xCounterVariable - (xCounter)))) + yCounter
+    == (slopeRandom2 * xCounterVariable) + yInterceptRandom2){
+      yCounterVariable = -sqrt((distance * distance) - ((xCounterVariable - (xCounter)) * (xCounterVariable - (xCounter)))) + yCounter;
       break;
     }
     else {
@@ -90,17 +77,14 @@ void draw() {
            
   }
   
-  for (int index = -width; index <= width; index++){
-    if (-sqrt((distance * distance) - ((xCounterVariable - (0 + xCounterVariable)) * (xCounterVariable - (0 + xCounterVariable)))) + (0 + yCounterVariable) == (slopeRandom2 * xCounterVariable) + yInterceptRandom2) {
-      yCounterVariable = -sqrt((distance * distance) - ((xCounterVariable - (0 + xCounterVariable)) * (xCounterVariable - (0 + xCounterVariable)))) + (0 + yCounterVariable);
-      break;
-    }
-    else {
-      xCounterVariable++;  
-    } 
-  }
   
-  float slope = -((midX - midpointX2)/(midY - midpointY2));    // The slope of the line perpendicular to the line between point R and point P
+  float midX = (xCounter + randomX1) / 2;                          // Gets the x coordinate of the midpoint between the two lines
+  float midY = (yCounter + randomY1) / 2;                          // Gets the y coordinate of the midpoint between the two lines
+  
+  float midpointX2 = (xCounterVariable + randomX2) / 2;                          // Gets the x coordinate of the midpoint between the two lines
+  float midpointY2 = (yCounterVariable + randomY2) / 2;                          // Gets the y coordinate of the midpoint between the two lines
+  
+  float slope = ((midY - midpointY2)/(midX - midpointX2));    // The slope of the line perpendicular to the line between point R and point P
   float b1 = midY - (slope * midX);                                // Calculates the y-intercept of the line
   float b2 = (slope * width) + b1;                                 // Calculates the y value at x = width
   float b3 = (slope * -width) + b1;                                // Calculate the y value for the point at -width
