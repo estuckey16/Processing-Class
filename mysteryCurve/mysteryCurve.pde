@@ -11,13 +11,17 @@ void setup() {
 // Global variables go here
 
 // Creates a random x coordinate for Point P1
-float randomX1 = random(-width/2, width/2);  
+float randomX1 = 200; 
+//random(-width/2, width/2);  
 // Creates a random y coordinate for Point P1
-float randomY1 = random(-height/2, height/2);
+float randomY1 = 200;
+//random(-height/2, height/2);
 // Creates a random x coordinate for Point P2
-float randomX2 = random(-width/2, width/2);
+float randomX2 = 450;
+//random(-width/2, width/2);
 // Creates a random y coordinate for Point P2
-float randomY2 = random(-height/2, height/2);
+float randomY2 = 250;
+//random(-height/2, height/2);
 
 
 // Creates a random y coordinate for the beginning point of Line 1
@@ -53,37 +57,61 @@ void draw() {
   pushMatrix();
   translate(width/2, height/2);
   
-  boolean findPoint = true;
-  
   // Get the distance between the two randomly generated points
   float distance = sqrt(((randomX1 + randomX2) * (randomX1 + randomX2)) + ((randomY1 + randomY2) * (randomY1 + randomY2)));
   
-  for (int count = 0; count < width/2; count++) {
-    if (sqrt(((xCounter + xCounterVariable) * (xCounter + xCounterVariable)) + ((yCounter + yCounterVariable) * (yCounter + yCounterVariable))) == distance &&
-    yCounterVariable == (slopeRandom1 * xCounter) + yInterceptRandom1 && xCounterVariable == xCounter) {
-      break;
-    }
-    else{
-      xCounterVariable++;
-      yCounterVariable = (slopeRandom1 * xCounterVariable) + yInterceptRandom1;
-    }
-  }
+  //if( 
+  
+  //for (int count = 0; count < width/2; count++) {
+  //  if (sqrt(((xCounter + xCounterVariable) * (xCounter + xCounterVariable)) + ((yCounter + yCounterVariable) * (yCounter + yCounterVariable))) == distance &&
+  //  yCounterVariable == (slopeRandom1 * xCounter) + yInterceptRandom1 && xCounterVariable == xCounter) {
+  //    break;
+  //  }
+  //  else{
+  //    xCounterVariable++;
+  //    yCounterVariable = (slopeRandom1 * xCounterVariable) + yInterceptRandom1;
+  //  }
+  //}
   
   float midX = (xCounter + randomX1) / 2;                          // Gets the x coordinate of the midpoint between the two lines
   float midY = (yCounter + randomY1) / 2;                          // Gets the y coordinate of the midpoint between the two lines
-  float slope = -((xCounter - randomX1)/(yCounter - randomY1));    // The slope of the line perpendicular to the line between point R and point P
+  
+  float midpointX2 = (xCounterVariable + randomX2) / 2;                          // Gets the x coordinate of the midpoint between the two lines
+  float midpointY2 = (yCounterVariable + randomY2) / 2;                          // Gets the y coordinate of the midpoint between the two lines
+  
+  for (int index = -width; index <= width; index++){
+    if (sqrt((distance * distance) - ((xCounterVariable - (0 + xCounterVariable)) * (xCounterVariable - (0 + xCounterVariable)))) + (0 + yCounterVariable) == (slopeRandom2 * xCounterVariable) + yInterceptRandom2) {
+      yCounterVariable = sqrt((distance * distance) - ((xCounterVariable - (0 + xCounterVariable)) * (xCounterVariable - (0 + xCounterVariable)))) + (0 + yCounterVariable);
+      break;
+    }
+    else {
+      xCounterVariable++;
+    }
+           
+  }
+  
+  for (int index = -width; index <= width; index++){
+    if (-sqrt((distance * distance) - ((xCounterVariable - (0 + xCounterVariable)) * (xCounterVariable - (0 + xCounterVariable)))) + (0 + yCounterVariable) == (slopeRandom2 * xCounterVariable) + yInterceptRandom2) {
+      yCounterVariable = -sqrt((distance * distance) - ((xCounterVariable - (0 + xCounterVariable)) * (xCounterVariable - (0 + xCounterVariable)))) + (0 + yCounterVariable);
+      break;
+    }
+    else {
+      xCounterVariable++;  
+    } 
+  }
+  
+  float slope = -((midX - midpointX2)/(midY - midpointY2));    // The slope of the line perpendicular to the line between point R and point P
   float b1 = midY - (slope * midX);                                // Calculates the y-intercept of the line
   float b2 = (slope * width) + b1;                                 // Calculates the y value at x = width
   float b3 = (slope * -width) + b1;                                // Calculate the y value for the point at -width
   line(-width, b3, width, b2);                                     // Draws the line between the two points
   
-  float midpointX2 = (xCounterVariable + randomX2) / 2;                          // Gets the x coordinate of the midpoint between the two lines
-  float midpointY2 = (yCounterVariable + randomY2) / 2;                          // Gets the y coordinate of the midpoint between the two lines
-  float slope2 = -((xCounterVariable - randomX2)/(yCounterVariable - randomY2));    // The slope of the line perpendicular to the line between point R and point P
-  float yint = midpointY2 - (slope * midpointX2);                                // Calculates the y-intercept of the line
-  float y2 = (slope2 * width) + yint;                                 // Calculates the y value at x = width
-  float y1 = (slope2 * -width) + yint;                                // Calculate the y value for the point at -width
-  line(-width, y1, width, y2);                                     // Draws the line between the two points
+  
+  //float slope2 = -((xCounterVariable - randomX2)/(yCounterVariable - randomY2));    // The slope of the line perpendicular to the line between point R and point P
+  //float yint = midpointY2 - (slope * midpointX2);                                // Calculates the y-intercept of the line
+  //float y2 = (slope2 * width) + yint;                                 // Calculates the y value at x = width
+  //float y1 = (slope2 * -width) + yint;                                // Calculate the y value for the point at -width
+  //line(-width, y1, width, y2);                                     // Draws the line between the two points
   
   
   ellipse(randomX1, randomY1, 10, 10);
@@ -94,7 +122,7 @@ void draw() {
   
   xCounter++;
   yCounter = (slopeRandom1 * xCounter) + yInterceptRandom1;
-  xCounterVariable = 0;
+  xCounterVariable = -width/2;
   yCounterVariable = (slopeRandom2 * xCounterVariable) + yInterceptRandom2;
   
   popMatrix();
