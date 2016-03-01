@@ -7,18 +7,17 @@ float HEIGHT = 600;
 
 void setup() {
  size(600, 600); 
- frameRate(240);
- 
+ frameRate(10);
 }
 
 // Creates a random x coordinate for Point P1
-float randomX1 = -100; 
+float randomX1 = -50; 
 //random(-WIDTH/2, WIDTH/2);  
 // Creates a random y coordinate for Point P1
 float randomY1 = -100;
 //random(-HEIGHT/2, HEIGHT/2);
 // Creates a random x coordinate for Point P2
-float randomX2 = 200;
+float randomX2 = 50;
 //random(-WIDTH/2, WIDTH/2);
 // Creates a random y coordinate for Point P2
 float randomY2 = -150;
@@ -49,8 +48,8 @@ float yCounter = randomSlope1 * xCounter + yInterceptRandom1;
 
 float distance = sqrt(((randomX1 + randomX2) * (randomX1 + randomX2)) + ((randomY1 + randomY2) * (randomY1 + randomY2)));
 
-float xCounterVariable = -WIDTH/2;
-float yCounterVariable = yCounter + sqrt((distance * distance) - ((-WIDTH/2 * -WIDTH/2) - 2*-WIDTH/2*xCounter + (xCounter * xCounter)));
+//float xCounterVariable = -WIDTH/2;
+//float yCounterVariable = yCounter + sqrt((distance * distance) - ((-WIDTH/2 * -WIDTH/2) - 2*-WIDTH/2*xCounter + (xCounter * xCounter)));
 
 void draw() {
   
@@ -78,31 +77,38 @@ void draw() {
  stroke(0, 255, 0);
  //ellipse(0, yInterceptRandom1, 10, 10);
  //ellipse(0, yInterceptRandom2, 10, 10);
- //ellipse(xCounter, randomSlope1 * xCounter + yInterceptRandom1, distance * 2, distance * 2);    // Draws the point along the first line
+// ellipse(xCounter, randomSlope1 * xCounter + yInterceptRandom1, 2*distance, 2*distance);    // Draws the point along the first line
  //ellipse(xCounter, randomSlope2 * xCounter + yInterceptRandom2, 10, 10);    // Draws the point along the second line
  
  
- for (float index = -WIDTH/2; index <= WIDTH/2; index++){
+ for (float index = -WIDTH*4; index <= WIDTH*4; index++){
+   
+   
    //yCounterVariable = sqrt((distance * distance) - ((xCounterVariable - xCounter) * (xCounterVariable - xCounter))) + yCounter;
-   float xIntersection = ((-randomSlope2*yInterceptRandom2) + sqrt((distance*distance) + (distance*distance*randomSlope2*randomSlope2) - 
-         (yInterceptRandom2*yInterceptRandom2))) / (1 + (randomSlope2 * randomSlope2));
-   float xIntersection2 = ((-randomSlope2*yInterceptRandom2) - sqrt((distance*distance) + (distance*distance*randomSlope2*randomSlope2) - 
-         (yInterceptRandom2*yInterceptRandom2))) / (1 + (randomSlope2 * randomSlope2));      
+   //float yCounterVariableNeg = -sqrt((distance * distance) - ((xCounterVariable - xCounter) * (xCounterVariable - xCounter))) + yCounter;
+    //ellipse(xCounterVariable, yCounterVariable, 10, 10);
+    //ellipse(xCounterVariable, yCounterVariableNeg, 10, 10);
+    
+    float underTheSquareRoot = ((1 + (randomSlope2 * randomSlope2)) * distance * distance) - ((xCounter*xCounter)*(randomSlope2 * randomSlope2)) 
+          + (((2 * xCounter *yCounter) - (2 * yInterceptRandom2 * xCounter)) * randomSlope2) - (yCounter * yCounter) + (2*yInterceptRandom2*yCounter)
+          - (yInterceptRandom2 * yInterceptRandom2);
    
-   float yIntersection = (yInterceptRandom2 + (randomSlope2* sqrt((distance*distance) + (distance*distance*randomSlope2*randomSlope2) - 
-         (yInterceptRandom2*yInterceptRandom2))))/ (1 + (randomSlope2 * randomSlope2));
-         
-   float yIntersection2 = (yInterceptRandom2 - (randomSlope2* sqrt((distance*distance) + (distance*distance*randomSlope2*randomSlope2) - 
-         (yInterceptRandom2*yInterceptRandom2))))/ (1 + (randomSlope2 * randomSlope2));
-   
-         
+   float denominator = (randomSlope2 * randomSlope2) + 1;  
+    
+   float xIntersection = - (((-xCounter + ((yInterceptRandom2 - yCounter) * randomSlope2)) + sqrt(underTheSquareRoot)) / denominator); 
+   float xIntersection2 =  (( xCounter + ((-yInterceptRandom2 + yCounter) * randomSlope2)) + sqrt(underTheSquareRoot)) / denominator; 
+
+   float yIntersection = (yInterceptRandom2 + (xCounter*randomSlope2) + (yCounter*randomSlope2*randomSlope2) + (randomSlope2 * sqrt(underTheSquareRoot))) / denominator;
+   float yIntersection2 = -((-yInterceptRandom2 - (xCounter*randomSlope2) - (yCounter*randomSlope2*randomSlope2) + (randomSlope2 * sqrt(underTheSquareRoot))) / denominator);
+
+      
       //line(xCounter, -height/2, xCounter, height/2);
       
       //yCounterVariable = sqrt((distance * distance) - ((xCounterVariable - xCounter) * (xCounterVariable - xCounter))) + yCounter;
       float midX = (xCounter + randomX1)/2;
       float midY = (yCounter + randomY1)/2;
       
-      float midpointX2 = (xIntersection + randomX2) / 2;
+      float midpointX2 = (xIntersection + randomY2) / 2;
       float midpointY2 = (yIntersection + randomY2) / 2;
       
       float slope = ((midpointY2 - midY)/(midpointX2 - midX));
@@ -112,22 +118,23 @@ void draw() {
       
       line(-WIDTH/2, b3, WIDTH/2, b2);
       
-      //xCounterVariable ++;
-   
-      //float midX2 = (xCounter + randomX1)/2;
-      //float midY2 = (yCounter + randomY1)/2;
+    
+      stroke(0, 0, 255);
+      //line(xCounter, -height/2, xCounter, height/2);
       
-      //float midpointX22 = (xIntersection + randomX2) / 2;
-      //float midpointY22 = (yIntersection + randomY2) / 2;
+      float midX2 = (xCounter + randomX1)/2;
+      float midY2 = (yCounter + randomY1)/2;
       
-      //float slope2 = ((midpointY22 - midY2)/(midpointX22 - midX2));
-      //float b12 = midY - (slope2 * midX2);                                // Calculates the y-intercept of the line
-      //float b22 = (slope2 * WIDTH/2) + b12;                                 // Calculates the y value at x = width
-      //float b32 = (slope2 * -WIDTH/2) + b12; 
+      float midpointX22 = (xIntersection2 + randomX2) / 2;
+      float midpointY22 = (yIntersection2 + randomY2) / 2;
       
-      //line(-WIDTH/2, b32, WIDTH/2, b22);
-   
-           
+      float slope2 = ((midpointY22 - midY2)/(midpointX22 - midX2));
+      float b12 = midY2 - (slope2 * midX2);                                // Calculates the y-intercept of the line
+      float b22 = (slope2 * WIDTH/2) + b12;                                 // Calculates the y value at x = width
+      float b32 = (slope2 * -WIDTH/2) + b12; 
+      
+      line(-WIDTH/2, b32, WIDTH/2, b22);
+              
   }
   
 
@@ -135,7 +142,7 @@ void draw() {
  
  //ellipse(300, 200, 10, 10);
  //ellipse(-300, -100, 10, 10);
- xCounter+=20;
+ xCounter+=40;
  yCounter = randomSlope1 * xCounter + yInterceptRandom1;
  //xCounterVariable = -WIDTH/2;
  //yCounterVariable = yCounter + sqrt((distance * distance) - ((-WIDTH/2 * -WIDTH/2) - 2*-WIDTH/2*xCounter + (xCounter * xCounter)));
