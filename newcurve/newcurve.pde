@@ -43,7 +43,7 @@ float yInterceptRandom1 = line1Y1 - (randomSlope1 * -WIDTH/2);
 float yInterceptRandom2 = line2Y1 - (randomSlope2 * -WIDTH/2);
 
 // Creates a moving variable that will move along line 1
-float xCounter = -WIDTH/2;
+float xCounter = -WIDTH;
 float yCounter = randomSlope1 * xCounter + yInterceptRandom1;
 
 float distance = sqrt(((randomX1 + randomX2) * (randomX1 + randomX2)) + ((randomY1 + randomY2) * (randomY1 + randomY2)));
@@ -77,11 +77,11 @@ void draw() {
  stroke(0, 255, 0);
  //ellipse(0, yInterceptRandom1, 10, 10);
  //ellipse(0, yInterceptRandom2, 10, 10);
-// ellipse(xCounter, randomSlope1 * xCounter + yInterceptRandom1, 2*distance, 2*distance);    // Draws the point along the first line
+ellipse(xCounter, randomSlope1 * xCounter + yInterceptRandom1, 10, 10);    // Draws the point along the first line
  //ellipse(xCounter, randomSlope2 * xCounter + yInterceptRandom2, 10, 10);    // Draws the point along the second line
  
  
- for (float index = -WIDTH*4; index <= WIDTH*4; index++){
+ 
    
    
    //yCounterVariable = sqrt((distance * distance) - ((xCounterVariable - xCounter) * (xCounterVariable - xCounter))) + yCounter;
@@ -135,14 +135,14 @@ void draw() {
       
       line(-WIDTH/2, b32, WIDTH/2, b22);
               
-  }
+  
   
 
   
  
  //ellipse(300, 200, 10, 10);
  //ellipse(-300, -100, 10, 10);
- xCounter+=40;
+ xCounter+=10;
  yCounter = randomSlope1 * xCounter + yInterceptRandom1;
  //xCounterVariable = -WIDTH/2;
  //yCounterVariable = yCounter + sqrt((distance * distance) - ((-WIDTH/2 * -WIDTH/2) - 2*-WIDTH/2*xCounter + (xCounter * xCounter)));
