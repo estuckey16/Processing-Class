@@ -11,7 +11,7 @@ void setup() {
 }
 
 // Creates a random x coordinate for Point P1
-float randomX1 = -50; 
+float randomX1 = -150; 
 //random(-WIDTH/2, WIDTH/2);  
 // Creates a random y coordinate for Point P1
 float randomY1 = -100;
@@ -64,30 +64,22 @@ void draw() {
  //line(-WIDTH/2, 0, WIDTH/2, 0);      // Draws the horizontal axis
  //line(0, -HEIGHT/2, 0, HEIGHT/2);    // Draws the vertical axis
  
- stroke(0, 0, 0);
- fill(0);
- ellipse(randomX1, randomY1, 10, 10);    // Draws the first random point
- fill(255);
- ellipse(randomX2, randomY2, 10, 10);    // Draws the second random point
- stroke(255, 0, 0);
- line(-WIDTH/2, line1Y1, WIDTH/2, line1Y2);    // Draws line 1
- stroke(0);
- line(-WIDTH/2, line2Y1, WIDTH/2, line2Y2);    // Draws line 2
+ //stroke(0, 0, 0);
+ //fill(0);
+ //ellipse(randomX1, randomY1, 10, 10);    // Draws the first random point
+ //fill(255);
+ //ellipse(randomX2, randomY2, 10, 10);    // Draws the second random point
+ //stroke(255, 0, 0);
+ //line(-WIDTH/2, line1Y1, WIDTH/2, line1Y2);    // Draws line 1
+ //stroke(0);
+ //line(-WIDTH/2, line2Y1, WIDTH/2, line2Y2);    // Draws line 2
  
  stroke(0, 255, 0);
  //ellipse(0, yInterceptRandom1, 10, 10);
  //ellipse(0, yInterceptRandom2, 10, 10);
-ellipse(xCounter, randomSlope1 * xCounter + yInterceptRandom1, 10, 10);    // Draws the point along the first line
+//ellipse(xCounter, randomSlope1 * xCounter + yInterceptRandom1, 10, 10);    // Draws the point along the first line
  //ellipse(xCounter, randomSlope2 * xCounter + yInterceptRandom2, 10, 10);    // Draws the point along the second line
  
- 
- 
-   
-   
-   //yCounterVariable = sqrt((distance * distance) - ((xCounterVariable - xCounter) * (xCounterVariable - xCounter))) + yCounter;
-   //float yCounterVariableNeg = -sqrt((distance * distance) - ((xCounterVariable - xCounter) * (xCounterVariable - xCounter))) + yCounter;
-    //ellipse(xCounterVariable, yCounterVariable, 10, 10);
-    //ellipse(xCounterVariable, yCounterVariableNeg, 10, 10);
     
     float underTheSquareRoot = ((1 + (randomSlope2 * randomSlope2)) * distance * distance) - ((xCounter*xCounter)*(randomSlope2 * randomSlope2)) 
           + (((2 * xCounter *yCounter) - (2 * yInterceptRandom2 * xCounter)) * randomSlope2) - (yCounter * yCounter) + (2*yInterceptRandom2*yCounter)
@@ -116,8 +108,8 @@ ellipse(xCounter, randomSlope1 * xCounter + yInterceptRandom1, 10, 10);    // Dr
       float b2 = (slope * WIDTH/2) + b1;                                 // Calculates the y value at x = width
       float b3 = (slope * -WIDTH/2) + b1; 
       
-      line(-WIDTH/2, b3, WIDTH/2, b2);
-      
+      line(WIDTH/2 , b3, -WIDTH/2, b2);
+      //line(randomX1, randomY1, xIntersection, yIntersection);
     
       stroke(0, 0, 255);
       //line(xCounter, -height/2, xCounter, height/2);
@@ -133,7 +125,8 @@ ellipse(xCounter, randomSlope1 * xCounter + yInterceptRandom1, 10, 10);    // Dr
       float b22 = (slope2 * WIDTH/2) + b12;                                 // Calculates the y value at x = width
       float b32 = (slope2 * -WIDTH/2) + b12; 
       
-      line(-WIDTH/2, b32, WIDTH/2, b22);
+      //line(randomX2, randomY2, xIntersection2, yIntersection2);
+      line(WIDTH/2, b32, -WIDTH/2, b22);
               
   
   
