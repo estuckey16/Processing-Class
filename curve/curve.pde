@@ -24,6 +24,7 @@ float thetaClone = theta;
 
 // the amount that theta changes by when it changes. Essentially more or less triangles
 float deltaTheta = (PI/50);
+float deltaThetaClone = (PI/50);
 
 // height of the triangle based on the radius of the small circle and its clone
 float h = smallRadius * 2;    // if based upon the length of the side the formula would be sqrt((sideLength*sideLength) - (sideLength/2 * sideLength/2))
@@ -49,48 +50,49 @@ boolean runMe = false;
 
 void setup() {
   size(600, 600);
-  background(255);
+  background(0);
   stroke(0, 0, 0, 50);
+  strokeWeight(2);
 }
 
 
 void draw() {
-
+  stroke(255);
   // This section draws all of the sliders and buttons
-  fill(0);
+  fill(255);
   text("Small Radius", 10, 75);
   noFill();
   rect(10, 80, 100, 10);
   rect(sliderRadius, 80, 10, 10);
 
-  fill(0);
+  fill(255);
   text("Big Radius", 10, 105);
   noFill();
   rect(10, 110, 100, 10);
   rect(sliderRadiusBig, 110, 10, 10);
 
-  fill(0);
+  fill(255);
   text("Theta", 10, 45);
   noFill();
   rect(10, 50, 100, 10);
   rect(sliderTheta, 50, 10, 10);
 
-  fill(0);
+  fill(255);
   text("Clear", 20, 145);
   noFill();
   rect(10, 130, 50, 20);
 
-  fill(0);
+  fill(255);
   text("Start", 20, 175);
   noFill();
   rect(10, 160, 50, 20);
 
-  fill(0);
+  fill(255);
   text("Stop", 20, 205);
   noFill();
   rect(10, 190, 50, 20);
 
-  fill(0);
+  fill(255);
   text("Reset", 20, 235);
   noFill();
   rect(10, 220, 50, 20);
@@ -99,7 +101,7 @@ void draw() {
   if (runMe == true) {
     
     // Grabs a random number for the transparency of the triangle
-    float transparancy = random(1, 100);
+    float transparancy = random(75, 125);
 
     stroke(random(1, 256), random(1, 256), random(1, 256), transparancy);
 
@@ -121,8 +123,10 @@ void draw() {
 
     
     // derived formula to automatically determine the corners of a triangle given the center
-    triangle(0, 0 - ((2.0/3.0)*h), 0 + ((sqrt(1.0/3.0)) * h), 0 + ((1.0/3.0) * h), 0 - ((sqrt(1.0/3.0)) * h), 0 + ((1.0/3.0) * h));
-    
+    //triangle(0, 0 - ((2.0/3.0)*h), 0 + ((sqrt(1.0/3.0)) * h), 0 + ((1.0/3.0) * h), 0 - ((sqrt(1.0/3.0)) * h), 0 + ((1.0/3.0) * h));
+    fill(255, 255, 255, 75);
+    ellipse(0, 0, 10, 10);
+   
 
     popMatrix();
 
@@ -149,7 +153,7 @@ void mouseDragged() {
   // the middle slider changes the radius of the small circle on the outside
   if (pmouseX > mouseX && mouseX >= sliderRadius && mouseX < sliderRadius + 10 
     && mouseY > 80 && mouseY < 90) {
-    fill(255);
+    fill(0);
     rect(10, 80, 100, 10);
     noFill();
     if (sliderRadius > 10) {
@@ -158,7 +162,7 @@ void mouseDragged() {
     }
   } else if (pmouseX < mouseX && mouseX >= sliderRadius && mouseX < sliderRadius + 10 
     && mouseY > 80 && mouseY < 90) {
-    fill(255);
+    fill(0);
     rect(10, 80, 100, 10);
     noFill();
     if (sliderRadius < 100) {
@@ -171,7 +175,7 @@ void mouseDragged() {
 
   if (pmouseX > mouseX && mouseX >= sliderRadiusBig && mouseX < sliderRadiusBig + 10 
     && mouseY > 110 && mouseY < 120) {
-    fill(255);
+    fill(0);
     rect(10, 110, 100, 10);
     noFill();
     if (sliderRadiusBig > 10) {
@@ -180,7 +184,7 @@ void mouseDragged() {
     }
   } else if (pmouseX < mouseX && mouseX >= sliderRadiusBig && mouseX < sliderRadiusBig + 10 
     && mouseY > 110 && mouseY < 120) {
-    fill(255);
+    fill(0);
     rect(10, 110, 100, 10);
     noFill();
     if (sliderRadiusBig < 100) {
@@ -192,7 +196,7 @@ void mouseDragged() {
   // The top slider changes the original theta
   if (pmouseX > mouseX && mouseX >= sliderTheta && mouseX < sliderTheta + 10 
     && mouseY > 50 && mouseY < 60) {
-    fill(255);
+    fill(0);
     rect(10, 50, 100, 10);
     noFill();
     if (sliderTheta > 10) {
@@ -201,12 +205,12 @@ void mouseDragged() {
     }
   } else if (pmouseX < mouseX && mouseX >= sliderTheta && mouseX < sliderTheta + 10 
     && mouseY > 50 && mouseY < 60) {
-    fill(255);
+    fill(0);
     rect(10, 50, 100, 10);
     noFill();
     if (sliderTheta < 100) {
       sliderTheta +=2;
-      theta += 2;
+      deltaTheta += PI / 50;
     }
   }
 } 
@@ -219,7 +223,7 @@ void mousePressed() {
   if (mouseX > 10 && mouseX < 70 && mouseY > 130 && mouseY < 150) {
 
     // Clears the screen, but continues to run the triangles, assuming the code was originally started
-    background(255);
+    background(0);
   }
 
   // Controls the Start button
@@ -243,7 +247,7 @@ void mousePressed() {
     runMe = false;
 
     // Clears the screen since all values reset
-    background(255);
+    background(0);
 
     // Reset all changed values to their default values using copy of the original value
     sliderRadius = sliderRadiusClone;
@@ -252,7 +256,7 @@ void mousePressed() {
 
     smallRadius = smallRadiusClone;
     bigRadius = bigRadiusClone;
-    theta = thetaClone;
+    deltaTheta = deltaThetaClone;
     h = hClone;
   }
 }
