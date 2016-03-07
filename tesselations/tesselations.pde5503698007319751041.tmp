@@ -1,0 +1,23 @@
+float WIDTH = 1500;
+float HEIGHT = 700;
+
+float rectWidth = 40;
+float rectHeight = 40;
+void setup() {
+  size(1500, 700);
+  
+}
+
+void draw() {
+  
+  for(float index = 0; index < WIDTH; index++) {
+    pushMatrix();
+    translate((index) * rectWidth , 0);
+    rect(0, 0, rectWidth, rectHeight);
+    popMatrix();
+    
+    
+  
+  }
+  
+}
