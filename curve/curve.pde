@@ -6,8 +6,8 @@
 // Global Variables for this project should include the radius of the small circle, 
 
 // Global Constants for height and width because they don't update unless they are in the draw loop...yay....
-float WIDTH = 600;
-float HEIGHT = 600;
+float WIDTH = 700;
+float HEIGHT = 700;
 
 
 // the radius of the small circle that rotates outside of the larger circle and its clone 
@@ -27,7 +27,7 @@ float deltaTheta = (PI/50);
 float deltaThetaClone = (PI/50);
 
 // height of the triangle based on the radius of the small circle and its clone
-float h = smallRadius * 2;    // if based upon the length of the side the formula would be sqrt((sideLength*sideLength) - (sideLength/2 * sideLength/2))
+float h = smallRadius / 4;    // if based upon the length of the side the formula would be sqrt((sideLength*sideLength) - (sideLength/2 * sideLength/2))
 float hClone = h;
 
 // amount that the matrix is rotated by
@@ -49,7 +49,7 @@ float sliderThetaClone = sliderTheta;
 boolean runMe = false;
 
 void setup() {
-  size(600, 600);
+  size(700, 700);
   background(0);
   stroke(0, 0, 0, 50);
   strokeWeight(2);
