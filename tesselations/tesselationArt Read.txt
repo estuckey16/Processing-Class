@@ -1,0 +1,18 @@
+Project: Tesselation Art
+
+On my honor, I have neither given nor received any aid on this assignment.
+Ellie Stuckey
+
+In this project, I used squares and rectangles to 
+create sheets of tesselations that rotate about a 
+center axis of the center of the sheet. Each sheet
+rotates at a different rate and some run in opposite
+directions. A random color is set for each sheet before
+the draw loop is run and the only thing that is changed
+in the draw loop is the transparency of the sheet. I also
+created a hexagon shape using PShape and geometry to use
+as a tesselation sheet. As the sheets stack on top of each other
+they rotate around the central point. The 1, 2, 3, 4, and 5 keys
+speed up the rotation whereas the shift + 1, 2, 3, 4, and 5 keys
+slow down the rotation. The 0 key resets the rotation and the s 
+and d keys start and stop the code. 
