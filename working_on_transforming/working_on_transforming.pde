@@ -3,6 +3,7 @@ PImage photo;
 PImage photo2;
 PImage photo3;
 PImage photo4;
+PImage photo5;
 
 float x = 0;
 
@@ -21,6 +22,7 @@ void setup() {
  photo2 = loadImage("colorful-blurred-lights.jpg");
  photo3 = loadImage("puppy12.jpg");
  photo4 = loadImage("robot.jpg");
+ photo5 = loadImage("crowd-lego.jpg");
  
 }
 
@@ -33,15 +35,24 @@ void draw() {
   photo.resize(2*width, 2*height);
   photo3.resize(2*width, 2*height);
   photo4.resize(2*width, 2*height);
+  photo5.resize(2*width, 2*height);
+
   translate(width/2 , height/2 );
   rotate(radians(x));
   
   // Image options
   
-  image(photo2, -width, -height);
+  //image(photo2, -width, -height);
   //image(photo3, -width, -height);
   //image(photo4, -width, -height);
   //image(photo, -width, -height);
+  //image(photo5, -width, -height);
+  
+  image(photo2, 0, 0);
+  image(photo3, -width *2, 0);
+  //image(photo4, 0, -height * 2);
+  image(photo, 0, -height * 2);
+  image(photo5, -width * 2, -height * 2);
   
   popMatrix();
   
