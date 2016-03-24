@@ -1,0 +1,14 @@
+Project: Autostereogram
+
+On my honor, I have neither given nor received any aid on this assignment.
+Ellie Stuckey
+
+In this project, framework code from C is translated into Processing
+to create an autostereogram. This code distorts the pointers for an
+image in the background to create a staticy image that contains the 
+original image. The code uses a separation value and makes the pixel
+on the left the same as the one on the right, so that they are the 
+same color. Eventually, the pixel is set into the new array and put
+onto the screen as the puzzle. The Z array is created by scanning
+images put up in the setup loop and then running the rest of the 
+algorithm. 

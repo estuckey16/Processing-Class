@@ -46,13 +46,13 @@ void draw() {
   //image(photo3, -width, -height);
   //image(photo4, -width, -height);
   //image(photo, -width, -height);
-  //image(photo5, -width, -height);
+  image(photo5, -width, -height);
   
-  image(photo2, 0, 0);
-  image(photo3, -width *2, 0);
-  //image(photo4, 0, -height * 2);
-  image(photo, 0, -height * 2);
-  image(photo5, -width * 2, -height * 2);
+  //image(photo2, 0, 0);
+  //image(photo3, -width *2, 0);
+  ////image(photo4, 0, -height * 2);
+  //image(photo, 0, -height * 2);
+  //image(photo5, -width * 2, -height * 2);
   
   popMatrix();
   
