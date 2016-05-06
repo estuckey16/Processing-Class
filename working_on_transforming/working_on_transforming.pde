@@ -16,6 +16,7 @@ void setup() {
  line(0, height/2, width, height/2);
  line(0, 0, width, height);
  line(width, 0, 0, height);
+ frameRate(6.5);
  
  // Loading pictures for backgrounds
  photo = loadImage("Sv4BC.png");
@@ -41,16 +42,18 @@ void draw() {
   rotate(radians(x));
   
   // Image options
-  
+  //int counter = frameCount;
   //image(photo2, -width, -height);
   //image(photo3, -width, -height);
   //image(photo4, -width, -height);
   //image(photo, -width, -height);
+ 
   image(photo5, -width, -height);
+ 
   
   //image(photo2, 0, 0);
   //image(photo3, -width *2, 0);
-  ////image(photo4, 0, -height * 2);
+  //image(photo4, 0, -height * 2);
   //image(photo, 0, -height * 2);
   //image(photo5, -width * 2, -height * 2);
   
@@ -71,7 +74,7 @@ void draw() {
   }
   }
   updatePixels();
-   x+=5;
+   x+=1;
    
    
 }

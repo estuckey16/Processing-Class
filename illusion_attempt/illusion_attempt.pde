@@ -39,41 +39,59 @@ int far = separation(0);
 
 
 // Fills the Z array with values for pixels by reading the setup screen
-int[][] CreateZArray() {
-  int[][] Z = new int[maxX][maxY];  // Creates a new array with the total number of elements for maxXa and maxY
+float[][] CreateZArray() {
+  float[][] Z = new float[maxX][maxY];  // Creates a new array with the total number of elements for maxXa and maxY
   loadPixels();
   // Writes values into the array
-  for (int i = 0; i < maxX*maxY; i ++){
-   int r = i % maxX;
-   x = r;
-   if (r == 0 && i != 0) {y++; x=0;}
-   Z[x][y] = pixels[i];   
-  }
+  for (int i = 0; i < maxX; i++)
+    for (int j = 0; j < maxY; j++) {
+      Z[i][j] = (unhex(hex(get(i, j)).substring(2, 4))/255.0);
+      //println(Z[i][j]);
+    }
   return Z;
 }
 
 void setup() {
   size(700, 700);
-  background(255);
-  noLoop();
-  strokeWeight(70);
-  noFill();
- // ellipse(maxX/2, maxY/2, 400, 400);
-  images = loadImage("Dolphin-Clip-art.jpg");
+  //background(0);
+  //noLoop();
+  //strokeWeight(1);
+  noStroke();
+  //noFill();
+  //ellipse(maxX/2, maxY/2, 400, 400);
+
+  images = loadImage("person.png");
   images2 = loadImage("fish2.png");
   images3 = loadImage("dofpro_chessDM.jpg");
   images4 = loadImage("dofpro_math2DM.jpg");
   //image(images, -maxX/2, -maxY/4);
-  //images3.resize(maxX, maxY);
-  images4.resize(maxX, maxY);
-  //image(images3, 0, 0);
-  image(images4, 0, 0);
+  boolean choice = false;
+  if (choice == true) {
+    background(0);
+    images3.resize(maxX, maxY);
+    //images4.resize(maxX, maxY);
+    //image(images, maxX/4, maxY/4);
+    image(images3, 0, 0);
+  } else {
+    background(255);
+    pushMatrix();
+    translate(maxX/2, maxY/2);
+    float p = 0;
+    for (int size = 600; size > 0; size--) {
+      fill(p);
+      ellipse(0, 0, size, size); 
+      p+=.3;
+    }
+  }
 
+  // popMatrix();
 }
 
 void draw() {
-  int [][] Z = CreateZArray();
-  fill(0);
+  //noFill();
+  float [][] Z = CreateZArray();
+  //background(255);
+  //fill(0);
   for (y = 0; y<maxY; y++) {
     int[] same = new int[maxX];  // new array to store pixel values
     int[] pix = new int[maxX];  
@@ -116,16 +134,14 @@ void draw() {
       else pix[x] = pix[same[x]];
       if (pix[x] == 0)
       {
-        set(x, y, color(0,0,0));  // Set pixel to black
-      }
-      else
+        set(x, y, color(0, 0, 0));  // Set pixel to black
+      } else
       {
-        set(x,y,color(255,255,255));  // Set pixel to white
+        set(x, y, color(255, 255, 255));  // Set pixel to white
       }
     }
-    
   }
- strokeWeight(1);
+  strokeWeight(1);
   ellipse(maxX/2 - far/2, maxY*19/20, 20, 20);
   ellipse(maxX/2 + far/2, maxY*19/20, 20, 20);
 }
